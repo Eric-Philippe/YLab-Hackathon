@@ -1,7 +1,6 @@
 # Node modules
 
 frontend/node_modules
-frontend/dist
 
 # Go
 
@@ -38,6 +37,5 @@ Thumbs.db
 
 # Docker
 
-Dockerfile
 docker-compose.yml
 .dockerignore
