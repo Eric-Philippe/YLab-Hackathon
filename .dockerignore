@@ -5,8 +5,8 @@ frontend/node_modules
 # Go
 
 server/main
-server/_.exe
-server/_.out
+server/*.exe
+server/*.out
 
 # Git
 
