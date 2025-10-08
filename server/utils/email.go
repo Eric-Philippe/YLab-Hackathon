@@ -46,7 +46,6 @@ func NewEmailService(host, port, user, pass, from string) *EmailService {
 }
 
 func (e *EmailService) SendEmail(to, subject, body string) error {
-	log.Printf("User and pass: %s / %s\n", e.SMTPUser, e.SMTPPass)
 	// Check if SMTP credentials are set
 	if e.SMTPUser == "" || e.SMTPPass == "" {
 		// Email not configured, skip sending
