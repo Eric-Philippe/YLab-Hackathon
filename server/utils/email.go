@@ -14,6 +14,26 @@ type EmailService struct {
 	SMTPPass string
 	From     string
 }
+func IsValidEmail(email string) bool {
+	// Basic check for presence of "@" and "."
+	if strings.Count(email, "@") != 1 {
+		return false
+	}
+	parts := strings.Split(email, "@")
+	if len(parts) != 2 || parts[0] == "" || parts[1] == "" {
+		return false
+	}
+	if !strings.Contains(parts[1], ".") {
+		return false
+	}
+
+	// If the email is way too long, reject it
+	if len(email) > 254 {
+		return false
+	}
+
+	return true
+}
 
 func NewEmailService(host, port, user, pass, from string) *EmailService {
 	return &EmailService{

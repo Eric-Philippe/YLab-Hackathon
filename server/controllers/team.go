@@ -5,6 +5,7 @@ import (
 
 	"github.com/ericp/ylab-hackathon/config"
 	"github.com/ericp/ylab-hackathon/models"
+	"github.com/ericp/ylab-hackathon/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -51,6 +52,12 @@ func UpdateTeamProfile(c *gin.Context) {
 	var req models.UpdateTeamProfileRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// Check if valid email (has @ and .)
+	if !utils.IsValidEmail(req.Email) {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid email format"})
 		return
 	}
 
