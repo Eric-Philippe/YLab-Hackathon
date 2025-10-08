@@ -1,0 +1,43 @@
+# Node modules
+
+frontend/node_modules
+frontend/dist
+
+# Go
+
+server/main
+server/_.exe
+server/_.out
+
+# Git
+
+.git
+.gitignore
+
+# IDE
+
+.vscode
+.idea
+_.swp
+_.swo
+
+# OS
+
+.DS_Store
+Thumbs.db
+
+# Logs
+
+\*.log
+
+# Environment files
+
+.env
+.env.local
+.env.production
+
+# Docker
+
+Dockerfile
+docker-compose.yml
+.dockerignore
