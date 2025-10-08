@@ -92,7 +92,7 @@ func CreatePurchase(c *gin.Context) {
 
 	if int(teamPurchasesCount)+req.Quantity > resource.MaxPerTeam {
 		tx.Rollback()
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Exceeds maximum quantity per team"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Ressource %s : dépassement de la quantité maximale par équipe", resource.Name)})
 		return
 	}
 
@@ -233,7 +233,7 @@ func CreateBatchPurchase(c *gin.Context) {
 
 		if int(teamPurchasesCount)+item.Quantity > resource.MaxPerTeam {
 			tx.Rollback()
-			c.JSON(http.StatusBadRequest, gin.H{"error": "Exceeds maximum quantity per team", "resource": resource.Name})
+			c.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Ressource %s : dépassement de la quantité maximale par équipe", resource.Name)})
 			return
 		}
 
@@ -258,6 +258,12 @@ func CreateBatchPurchase(c *gin.Context) {
 
 	// Generate unique batch ID for this purchase group
 	batchID := fmt.Sprintf("%s-%d", time.Now().Format("20060102150405"), teamID)
+
+	// Assure the comment is not too long
+	if len(req.Comment) > 3000 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Comment is too long"})
+		return
+	}
 
 	// Create purchases with batch_id and comment
 	purchases := make([]models.Purchase, 0, len(validatedItems))

@@ -21,6 +21,6 @@ func main() {
 		teamName := "Team" + string(rune('A'+i))
 		teamPassword, _ := utils.HashPassword(teamPasswordPrefix + string(rune('A'+i)))
 		log.Printf("Team: %s, Password: %s, Hashed Password: %s\n", teamName, teamPasswordPrefix+string(rune('A'+i)), teamPassword)
-		index++e
+		index++
 	}
 }

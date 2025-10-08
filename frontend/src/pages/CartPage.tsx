@@ -335,6 +335,7 @@ export function CartPage() {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                       rows={4}
                       minLength={10}
+                      maxLength={3000}
                       required
                     />
                     <p className="mt-1 text-xs text-gray-500">
